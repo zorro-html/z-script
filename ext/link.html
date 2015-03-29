@@ -1,23 +1,33 @@
 <script>
   (function (global) {
-    function UrlHelper(baseURI) {
+    function getBaseURI(doc) {
+      var script = doc._currentScript || doc.currentScript;
+      var assetpath = script.parentNode.getAttribute('assetpath');
+      return getFullURL(assetpath, script.baseURI);
+    }
+
+    function getFullURL(url, baseURI) {
       var frame = document.createElement("iframe");
       frame.style.display = "none";
       document.body.appendChild(frame);
 
-      this.doc = frame.contentDocument;
+      var doc = frame.contentDocument;
 
-      var base = this.doc.createElement("base");
-      base.href = baseURI;
-      this.doc.head.appendChild(base);
+      var base = doc.createElement("base");
+      base.href = baseURI || '';
+      doc.head.appendChild(base);
 
-      this.baseURI = baseURI;
+      var anchor = doc.createElement('a');
+      anchor.setAttribute('href', url || '');
+      
+      var fullUrl = anchor.href;
+
+      document.body.removeChild(frame);
+
+      return fullUrl;
     }
-    UrlHelper.prototype.getFullURL = function (url) {
-      var anchor = this.doc.createElement('a');
-      anchor.setAttribute('href', url);
-      return anchor.href;
-    };
-    global.UrlHelper = UrlHelper;
+
+    global.getBaseURI = getBaseURI;
+    global.getFullURL = getFullURL;
   })(this);
 </script>
