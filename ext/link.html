@@ -1,3 +1,23 @@
 <script>
-  ;
+  (function (global) {
+    function UrlHelper(baseURI) {
+      var frame = document.createElement("iframe");
+      frame.style.display = "none";
+      document.body.appendChild(frame);
+
+      this.doc = frame.contentDocument;
+
+      var base = this.doc.createElement("base");
+      base.href = baseURI;
+      this.doc.head.appendChild(base);
+
+      this.baseURI = baseURI;
+    }
+    UrlHelper.prototype.getFullURL = function (url) {
+      var anchor = this.doc.createElement('a');
+      anchor.setAttribute('href', url);
+      return anchor.href;
+    };
+    global.UrlHelper = UrlHelper;
+  })(this);
 </script>
