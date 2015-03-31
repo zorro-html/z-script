@@ -3,5 +3,8 @@
   "version": "0.0.1",
   "main": "z-script.html",
   "dependencies": {
+  },
+  "devDependencies": {
+    "web-component-tester": "Polymer/web-component-tester#~2.2.6"
   }
 }

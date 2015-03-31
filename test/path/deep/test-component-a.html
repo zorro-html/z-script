@@ -1,0 +1,21 @@
+<link rel="import" href="//g.alicdn.com/mtb/lib-3rd/polymer/polymer.html">
+<link rel="import" href="../../../ext/link.html">
+
+<polymer-element name="test-a">
+  <template><content></content></template>
+  <script>
+    (function () {
+      var baseURI = getBaseURI(document);
+      var imgPath = 'images/logo.png';
+
+      Polymer('test-a', {
+        foo: '',
+        bar: '',
+        ready: function () {
+          this.foo = baseURI;
+          this.bar = getFullURL(imgPath, baseURI);
+        }
+      });
+    })();
+  </script>
+</polymer-element>

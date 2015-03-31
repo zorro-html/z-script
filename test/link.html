@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no">
+
+<title>Zorro Script</title>
+
+<script src="//g.alicdn.com/mtb/lib-3rd/webcomponentsjs/webcomponents.js"></script>
+<script src="../../web-component-tester/browser.js"></script>
+<link rel="import" href="path/deep/test-component-a.html">
+
+</head>
+<body>
+
+<script>
+  describe('link tools', function () {
+    var el;
+
+    it('has global method `getBaseURI` and `getFullURL`', function () {
+      expect(window.getBaseURI).is.a('function');
+      expect(window.getFullURL).is.a('function');
+    });
+
+    it('should get baseURI for a component', function () {
+      el = document.createElement('test-a');
+      expect(el).is.instanceof(HTMLElement);
+      expect(el).has.property('foo');
+      expect(el.foo).is.a('string');
+      expect(el.foo).match(/path\/deep\/test\-component\-a\.html$/);
+    });
+
+    it('should get full url for a based on the component itself', function () {
+      expect(el).has.property('bar');
+      expect(el.bar).is.a('string');
+      expect(el.bar).match(/path\/deep\/images\/logo\.png$/);
+    });
+  });
+</script>
+
+</body>
+</html>
