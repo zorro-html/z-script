@@ -1,13 +1,16 @@
 {
   "name": "z-script",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "main": "z-script.html",
   "ignore": [
     "test"
   ],
   "dependencies": {
+    "polymer": "~0.5.0",
+    "docs-parser": "Jinjiang/context-free-parser#master"
   },
   "devDependencies": {
-    "web-component-tester": "Polymer/web-component-tester#~2.2.6"
+    "docs-maker": "zorro-html/zorro-docs-maker",
+    "web-component-tester": "Polymer/web-component-tester#^1.4.2"
   }
 }
